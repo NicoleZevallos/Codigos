@@ -26,4 +26,3 @@ namespace test1.Models
         public string? Status { get; set; }
     }
 }
-

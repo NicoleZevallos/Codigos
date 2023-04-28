@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using test1.Models;
+using test1.Data;
+
 
 namespace test1.Controllers
 {
@@ -12,14 +15,28 @@ namespace test1.Controllers
     public class ContactoController : Controller
     {
         private readonly ILogger<ContactoController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public ContactoController(ILogger<ContactoController> logger)
+
+
+        public ContactoController(ILogger<ContactoController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
+
 
         public IActionResult Index()
         {
+            return View("Create");
+        }
+
+        [HttpPost]
+        public IActionResult Create(Contacto objContacto)
+        {
+            _context.Add(objContacto);
+            _context.SaveChanges();
+            ViewData["Message"] = "El contacto ya esta registrado";
             return View();
         }
 

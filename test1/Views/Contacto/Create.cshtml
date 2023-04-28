@@ -1,0 +1,21 @@
+@model test1.Models.Contacto;
+
+@{
+    ViewData["Title"] = "Contacto";
+
+}
+<h1>Formulario de Contacto</h1>
+
+<form asp-controller="Contacto" asp-action="Create" method="post">
+    <div>
+            <label asp-for="name">Nombre:</label>
+            <input asp-for="name" type="text" name="name" id="name">
+    </div>
+
+    <div>
+            <label asp-for="email">Email:</label>
+            <input asp-for="email" type="email" name="email" id="email">
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>
